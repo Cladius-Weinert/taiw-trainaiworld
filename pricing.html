@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pricing - TAIW Smart Auto-Apply</title>
+    <title>Pricing • TAIW Pro</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -12,7 +12,7 @@
         .heading { font-family: 'Space Grotesk', Inter, sans-serif; }
         .pricing-card { transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
         .pricing-card.popular { transform: scale(1.02); box-shadow: 0 25px 50px -12px rgb(0 0 0 / 0.15); }
-        .feature-check { color: #1e1b4b; }
+        .stripe-btn { background: linear-gradient(180deg, #635BFF 0%, #5348C8 100%); }
     </style>
 </head>
 <body class="bg-slate-50">
@@ -20,173 +20,201 @@
         <!-- Header -->
         <div class="text-center mb-12">
             <div class="inline-flex items-center gap-x-2 bg-white border border-slate-200 px-4 py-1.5 rounded-2xl mb-6">
-                <i class="fa-solid fa-rocket text-[#1e1b4b]"></i>
-                <span class="text-sm font-semibold text-slate-700">Now Available</span>
+                <i class="fa-solid fa-shield-halved text-[#635BFF]"></i>
+                <span class="text-sm font-semibold text-slate-700">Secure payments powered by Stripe</span>
             </div>
-            <h1 class="text-5xl font-semibold tracking-tighter heading mb-4">Unlock Smart Auto-Apply</h1>
-            <p class="text-xl text-slate-600 max-w-md mx-auto">Professional-grade AI that adapts to every job type and maximizes your chances of getting hired.</p>
+            <h1 class="text-5xl font-semibold tracking-tighter heading mb-4">Choose your plan</h1>
+            <p class="text-xl text-slate-600 max-w-md mx-auto">Unlock unlimited Smart Auto-Apply with professional AI assistance.</p>
         </div>
 
         <!-- Pricing Cards -->
         <div class="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             
-            <!-- Monthly Plan -->
+            <!-- Monthly -->
             <div class="pricing-card bg-white border border-slate-200 rounded-3xl p-8">
-                <div class="mb-8">
-                    <div class="flex items-baseline gap-x-2">
-                        <span class="text-5xl font-semibold tracking-tighter">$19</span>
-                        <span class="text-slate-500">/ month</span>
+                <div>
+                    <div class="flex items-baseline gap-x-1">
+                        <span class="text-6xl font-semibold tracking-tighter">$19</span>
+                        <span class="text-slate-500 text-lg">/mo</span>
                     </div>
-                    <div class="mt-1 text-sm text-slate-500">Billed monthly</div>
+                    <p class="text-sm text-slate-500 mt-1">Billed monthly • Cancel anytime</p>
                 </div>
 
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Unlimited Smart Auto-Apply</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Advanced Adaptive AI Generation</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Full Application History &amp; Tracking</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Export to CSV</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Priority support</span>
-                    </div>
+                <div class="my-8 space-y-3.5 text-sm">
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Unlimited Smart Auto-Apply</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Advanced job-type adaptive AI</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Full history &amp; export to CSV</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Priority email support</span></div>
                 </div>
 
-                <button onclick="selectPlan('monthly')" 
-                        class="w-full py-4 bg-white border border-slate-300 hover:bg-slate-50 font-semibold rounded-2xl transition-all">
-                    Start 7-day free trial
+                <button onclick="startCheckout('monthly')" 
+                        class="stripe-btn w-full py-4 text-white font-semibold rounded-2xl flex items-center justify-center gap-x-2 hover:opacity-90 transition-all">
+                    <span>Subscribe with Stripe</span>
                 </button>
-                <p class="text-center text-xs text-slate-400 mt-3">No credit card required for trial</p>
             </div>
 
-            <!-- Annual Plan - Best Value -->
+            <!-- Annual - Best Value -->
             <div class="pricing-card popular bg-white border-2 border-[#1e1b4b] rounded-3xl p-8 relative">
-                <div class="absolute -top-3 right-6 bg-[#1e1b4b] text-white text-xs font-bold px-4 py-1 rounded-full tracking-wider">BEST VALUE</div>
+                <div class="absolute -top-3.5 right-8 bg-[#1e1b4b] text-white text-xs font-bold px-5 py-1 rounded-full tracking-[1px]">BEST VALUE</div>
                 
-                <div class="mb-8">
-                    <div class="flex items-baseline gap-x-2">
-                        <span class="text-5xl font-semibold tracking-tighter">$149</span>
-                        <span class="text-slate-500">/ year</span>
+                <div>
+                    <div class="flex items-baseline gap-x-1">
+                        <span class="text-6xl font-semibold tracking-tighter">$149</span>
+                        <span class="text-slate-500 text-lg">/yr</span>
                     </div>
-                    <div class="mt-1 flex items-center gap-x-2">
-                        <span class="text-sm text-emerald-600 font-semibold">Save $79 per year</span>
-                    </div>
-                </div>
-
-                <div class="space-y-4 mb-8">
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span><strong>Everything in Monthly</strong></span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Priority access to new opportunities</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Advanced analytics &amp; insights</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Early access to new AI features</span>
-                    </div>
-                    <div class="flex items-start gap-x-3">
-                        <i class="fa-solid fa-check feature-check mt-1"></i>
-                        <span>Dedicated support</span>
+                    <div class="flex items-center gap-x-2 mt-1">
+                        <span class="text-emerald-600 text-sm font-semibold">Save $79/year</span>
                     </div>
                 </div>
 
-                <button onclick="selectPlan('annual')" 
-                        class="w-full py-4 bg-[#1e1b4b] hover:bg-[#312e81] text-white font-semibold rounded-2xl transition-all">
-                    Get Annual Plan
+                <div class="my-8 space-y-3.5 text-sm">
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span><strong>Everything in Monthly</strong></span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Priority access to new jobs</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Advanced analytics dashboard</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Early access to new features</span></div>
+                    <div class="flex gap-x-3"><i class="fa-solid fa-check text-emerald-500 mt-1 w-4"></i> <span>Dedicated support</span></div>
+                </div>
+
+                <button onclick="startCheckout('annual')" 
+                        class="w-full py-4 bg-[#1e1b4b] hover:bg-black text-white font-semibold rounded-2xl flex items-center justify-center gap-x-2 transition-all">
+                    <span>Subscribe with Stripe</span>
                 </button>
-                <p class="text-center text-xs text-emerald-600 mt-3 font-medium">Most popular choice among professional trainers</p>
+                <p class="text-center text-xs text-emerald-600 mt-3 font-medium">Most popular among professional trainers</p>
             </div>
-
         </div>
 
-        <div class="text-center mt-10 text-sm text-slate-500">
-            All plans include a 7-day free trial. Cancel anytime.
+        <div class="text-center mt-10">
+            <div class="flex items-center justify-center gap-x-2 text-sm text-slate-500">
+                <i class="fa-brands fa-stripe text-2xl"></i>
+                <span>Secure payments powered by Stripe</span>
+            </div>
+            <p class="text-xs text-slate-400 mt-2">7-day free trial included. Cancel anytime.</p>
         </div>
     </div>
 
-    <!-- Upgrade Modal -->
-    <div id="upgrade-modal" onclick="if (event.target.id === 'upgrade-modal') closeModal()" class="hidden fixed inset-0 bg-black/60 z-[80] flex items-center justify-center p-6">
-        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl max-w-md w-full p-8">
-            <div class="text-center">
-                <div class="mx-auto w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-5">
-                    <i class="fa-solid fa-check text-2xl"></i>
-                </div>
-                <h3 class="text-2xl font-semibold tracking-tight mb-2">Welcome to TAIW Pro!</h3>
-                <p class="text-slate-600 mb-6">Thank you for choosing the <span id="plan-name" class="font-semibold"></span> plan.</p>
-                
-                <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-sm mb-6">
-                    <div class="flex justify-between mb-1">
-                        <span>Plan</span>
-                        <span id="plan-price" class="font-semibold"></span>
+    <!-- Stripe-style Checkout Modal -->
+    <div id="checkout-modal" onclick="if(event.target.id==='checkout-modal') closeCheckout()" class="hidden fixed inset-0 bg-black/70 z-[90] flex items-center justify-center p-6">
+        <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl w-full max-w-md overflow-hidden shadow-2xl">
+            
+            <!-- Modal Header -->
+            <div class="px-8 pt-8 pb-6 border-b">
+                <div class="flex items-center justify-between">
+                    <div>
+                        <div class="font-semibold text-xl" id="modal-plan-name"></div>
+                        <div class="text-sm text-slate-500" id="modal-plan-price"></div>
                     </div>
-                    <div class="text-xs text-slate-500">You will be redirected to secure checkout.</div>
+                    <button onclick="closeCheckout()" class="text-slate-400 hover:text-slate-600 text-2xl leading-none">&times;</button>
+                </div>
+            </div>
+
+            <!-- Card Form Simulation -->
+            <div class="p-8">
+                <div class="mb-6">
+                    <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">CARD INFORMATION</label>
+                    <div class="border border-slate-300 rounded-2xl p-4">
+                        <div class="flex items-center">
+                            <i class="fa-brands fa-cc-visa text-2xl text-slate-400 mr-3"></i>
+                            <input type="text" value="4242 4242 4242 4242" class="flex-1 outline-none text-sm font-mono" readonly>
+                        </div>
+                        <div class="flex mt-3 text-sm">
+                            <input type="text" value="12 / 28" class="w-20 outline-none font-mono" readonly>
+                            <div class="flex-1"></div>
+                            <input type="text" value="123" class="w-12 outline-none font-mono text-right" readonly>
+                        </div>
+                    </div>
                 </div>
 
-                <button onclick="simulateCheckout()" 
-                        class="w-full py-3.5 bg-[#1e1b4b] text-white font-semibold rounded-2xl mb-3">
-                    Proceed to Checkout
+                <div class="mb-6">
+                    <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">NAME ON CARD</label>
+                    <input type="text" value="Alex Rivera" class="w-full border border-slate-300 rounded-2xl px-4 py-3 text-sm" readonly>
+                </div>
+
+                <div class="text-xs text-slate-400 mb-6 flex items-center gap-x-2">
+                    <i class="fa-solid fa-lock"></i>
+                    <span>Your payment information is encrypted and secure.</span>
+                </div>
+
+                <button onclick="processPayment()" 
+                        class="w-full py-4 bg-[#635BFF] hover:bg-[#5348C8] transition-all text-white font-semibold rounded-2xl flex items-center justify-center gap-x-2">
+                    <span>Pay securely with Stripe</span>
                 </button>
-                <button onclick="closeModal()" class="w-full py-3 text-sm text-slate-500">Maybe later</button>
+
+                <p class="text-center text-[10px] text-slate-400 mt-4">Powered by Stripe • Test mode</p>
             </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="hidden fixed inset-0 bg-black/70 z-[100] flex items-center justify-center p-6">
+        <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center">
+            <div class="mx-auto w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
+                <i class="fa-solid fa-check-double text-3xl"></i>
+            </div>
+            <h2 class="text-2xl font-semibold tracking-tight mb-2">Payment Successful!</h2>
+            <p class="text-slate-600 mb-6">Thank you. Your TAIW Pro subscription is now active.</p>
+            
+            <div class="bg-slate-50 border border-slate-200 rounded-2xl p-4 text-left text-sm mb-6">
+                <div class="flex justify-between mb-1"><span class="text-slate-500">Plan</span> <span id="success-plan" class="font-semibold"></span></div>
+                <div class="flex justify-between"><span class="text-slate-500">Status</span> <span class="text-emerald-600 font-semibold">Active</span></div>
+            </div>
+
+            <button onclick="activatePro()" 
+                    class="w-full py-3.5 bg-[#1e1b4b] text-white font-semibold rounded-2xl">
+                Return to TAIW Dashboard
+            </button>
         </div>
     </div>
 
     <script>
-        function selectPlan(plan) {
-            const modal = document.getElementById('upgrade-modal');
-            const planName = document.getElementById('plan-name');
-            const planPrice = document.getElementById('plan-price');
+        let selectedPlan = '';
+
+        function startCheckout(plan) {
+            selectedPlan = plan;
+            const modal = document.getElementById('checkout-modal');
+            const planName = document.getElementById('modal-plan-name');
+            const planPrice = document.getElementById('modal-plan-price');
 
             if (plan === 'monthly') {
-                planName.textContent = 'Monthly';
-                planPrice.textContent = '$19/month';
+                planName.textContent = 'TAIW Pro — Monthly';
+                planPrice.textContent = '$19 per month';
             } else {
-                planName.textContent = 'Annual';
-                planPrice.textContent = '$149/year';
+                planName.textContent = 'TAIW Pro — Annual';
+                planPrice.textContent = '$149 per year';
             }
 
             modal.classList.remove('hidden');
             modal.classList.add('flex');
         }
 
-        function closeModal() {
-            const modal = document.getElementById('upgrade-modal');
+        function closeCheckout() {
+            const modal = document.getElementById('checkout-modal');
             modal.classList.remove('flex');
             modal.classList.add('hidden');
         }
 
-        function simulateCheckout() {
-            const modal = document.getElementById('upgrade-modal');
-            modal.innerHTML = `
-                <div class="bg-white rounded-3xl max-w-md w-full p-8 text-center">
-                    <div class="mx-auto w-14 h-14 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mb-6">
-                        <i class="fa-solid fa-check-double text-2xl"></i>
-                    </div>
-                    <h3 class="text-2xl font-semibold mb-3">Thank you!</h3>
-                    <p class="text-slate-600 mb-6">Your Pro access has been activated for this demo.</p>
-                    <button onclick="window.location.reload()" 
-                            class="px-8 py-3 bg-[#1e1b4b] text-white rounded-2xl font-semibold">
-                        Return to TAIW
-                    </button>
-                </div>
-            `;
+        function processPayment() {
+            const checkoutModal = document.getElementById('checkout-modal');
+            const successModal = document.getElementById('success-modal');
+
+            checkoutModal.classList.remove('flex');
+            checkoutModal.classList.add('hidden');
+
+            // Show success after short delay
+            setTimeout(() => {
+                const planText = selectedPlan === 'monthly' ? '$19 / month' : '$149 / year';
+                document.getElementById('success-plan').textContent = planText;
+                successModal.classList.remove('hidden');
+                successModal.classList.add('flex');
+            }, 600);
+        }
+
+        function activatePro() {
+            // In real implementation, this would redirect or update user status
+            window.location.href = 'index.html';
+            // For demo: alert that Pro is activated
+            setTimeout(() => {
+                alert('TAIW Pro activated! In a real app, the user would now have unlimited Smart Auto-Apply.');
+            }, 800);
         }
     </script>
 </body>
