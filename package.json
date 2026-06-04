@@ -1,0 +1,20 @@
+{
+  "name": "taiw-trainaiworld",
+  "version": "1.0.0",
+  "description": "TAIW (TrainAIWorld) - Smart Auto-Apply Platform for AI Trainers",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve .",
+    "test": "echo \"No tests configured\" && exit 0"
+  },
+  "keywords": [
+    "ai-trainer",
+    "jobs",
+    "auto-apply"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@vercel/analytics": "^2.0.1"
+  }
+}
