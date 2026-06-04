@@ -9,6 +9,13 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
 body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:'Space Grotesk',Inter,sans-serif}.hero-bg{background:linear-gradient(135deg,#1e1b4b,#312e81)}.section-header{position:relative;display:inline-block}.section-header:after{content:'';position:absolute;left:0;bottom:-8px;width:48px;height:3px;border-radius:3px;background:linear-gradient(to right,#1e1b4b,#c9a227)}.job-card{transition:all .3s cubic-bezier(.4,0,.2,1)}.job-card:hover{transform:translateY(-6px);box-shadow:0 20px 25px -5px rgb(15 23 42/.1),0 8px 10px -6px rgb(15 23 42/.1)}
+.modal { animation: modalPop 0.2s ease-out forwards; }
+@keyframes modalPop { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+.filter-btn { transition: all 0.2s ease; }
+.filter-btn.active { background-color: #1e1b4b; color: white; border-color: #1e1b4b; }
+.toast { animation: slideIn 0.3s ease forwards; }
+@keyframes slideIn { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+.application-item { transition: all 0.2s ease; }
 </style>
 </head>
 <body class="bg-slate-50 text-slate-800">
@@ -20,14 +27,50 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
       <div class="w-11 h-11 bg-[#1e1b4b] rounded-2xl flex items-center justify-center"><span class="text-white font-bold text-2xl">TAIW</span></div>
       <div><span class="font-semibold text-2xl tracking-tighter">TAIW</span><span class="text-[10px] text-slate-500 block -mt-1">TRAINAIWORLD</span></div>
     </div>
+    
+    <!-- Desktop Nav -->
     <div class="hidden md:flex items-center gap-x-8 text-sm font-medium">
-      <a href="#jobs" class="hover:text-[#1e1b4b]">Opportunities</a>
-      <a href="#how" class="hover:text-[#1e1b4b]">How it Works</a>
-      <a href="pricing.html" class="hover:text-[#1e1b4b]">Pricing</a>
+      <a href="#jobs" class="hover:text-[#1e1b4b] transition-colors">Opportunities</a>
+      <a href="#how" class="hover:text-[#1e1b4b] transition-colors">How it Works</a>
+      <a href="pricing.html" class="hover:text-[#1e1b4b] transition-colors">Pricing</a>
+      <button onclick="showMyApplications()" class="hover:text-[#1e1b4b] transition-colors flex items-center gap-x-1.5" id="nav-my-apps">
+        <i class="fa-solid fa-list-check"></i> <span>My Applications</span>
+      </button>
     </div>
-    <div class="flex items-center gap-x-4">
-      <a href="pricing.html" class="px-5 py-2.5 text-sm font-semibold border border-slate-300 rounded-2xl hover:bg-white transition-all">Go Pro</a>
-      <button onclick="showSignupModal()" class="px-6 py-2.5 text-sm font-semibold bg-[#1e1b4b] text-white rounded-2xl hover:bg-[#312e81]">Join as Trainer</button>
+    
+    <div class="flex items-center gap-x-3">
+      <!-- User State -->
+      <div id="user-state" class="hidden items-center gap-x-3">
+        <div onclick="showMyApplications()" class="flex items-center gap-x-2 cursor-pointer">
+          <div class="w-8 h-8 bg-emerald-100 rounded-full flex items-center justify-center text-emerald-700 text-xs font-bold" id="user-avatar">JD</div>
+          <div class="hidden md:block text-sm"><span id="user-name" class="font-medium"></span></div>
+        </div>
+      </div>
+      
+      <button onclick="showSignupModal()" id="join-btn"
+              class="px-6 py-2.5 text-sm font-semibold bg-[#1e1b4b] text-white rounded-2xl hover:bg-[#312e81] transition-all flex items-center gap-x-2">
+        <span>Join as Trainer</span>
+      </button>
+      
+      <!-- Mobile Menu Button -->
+      <button onclick="toggleMobileMenu()" class="md:hidden w-10 h-10 flex items-center justify-center text-slate-600 hover:text-slate-900">
+        <i class="fa-solid fa-bars text-xl"></i>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Mobile Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t bg-white px-8 py-4">
+    <div class="flex flex-col gap-y-3 text-sm font-medium">
+      <a href="#jobs" class="py-2 hover:text-[#1e1b4b]" onclick="toggleMobileMenu()">Opportunities</a>
+      <a href="#how" class="py-2 hover:text-[#1e1b4b]" onclick="toggleMobileMenu()">How it Works</a>
+      <a href="pricing.html" class="py-2 hover:text-[#1e1b4b]" onclick="toggleMobileMenu()">Pricing</a>
+      <button onclick="showMyApplications(); toggleMobileMenu()" class="py-2 text-left hover:text-[#1e1b4b] flex items-center gap-x-2">
+        <i class="fa-solid fa-list-check"></i> <span>My Applications</span>
+      </button>
+      <div class="pt-2 border-t">
+        <button onclick="showSignupModal(); toggleMobileMenu()" class="w-full py-2.5 text-sm font-semibold bg-[#1e1b4b] text-white rounded-2xl">Join as Trainer</button>
+      </div>
     </div>
   </div>
 </nav>
@@ -38,15 +81,16 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
     <div class="max-w-3xl">
       <div class="inline-flex items-center gap-x-2 bg-white/10 px-4 py-1.5 rounded-2xl mb-6 text-sm">
         <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
-        <span>Smart Auto-Apply now available</span>
+        <span>Smart Auto-Apply now available • Fully interactive demo</span>
       </div>
       <h1 class="text-6xl md:text-7xl font-semibold tracking-tighter leading-none mb-6">The smartest way<br>for AI Trainers to get hired.</h1>
       <p class="max-w-lg text-2xl text-white/80 mb-10">AI that adapts to every job type and generates personalized applications in seconds.</p>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a href="#jobs" class="px-8 py-4 bg-white text-[#1e1b4b] font-semibold rounded-2xl text-center">Browse Opportunities</a>
-        <a href="pricing.html" class="px-8 py-4 border border-white/40 hover:bg-white/10 font-semibold rounded-2xl text-center transition-all">See Pricing</a>
+        <a href="#jobs" class="px-8 py-4 bg-white text-[#1e1b4b] font-semibold rounded-2xl text-center hover:bg-slate-100 transition-all">Browse Opportunities</a>
+        <button onclick="document.getElementById('jobs').scrollIntoView({behavior:'smooth'}); setTimeout(() => { const f = document.getElementById('job-search'); if(f) f.focus(); }, 600)" 
+                class="px-8 py-4 border border-white/40 hover:bg-white/10 font-semibold rounded-2xl text-center transition-all">Try Smart Filters</button>
       </div>
-      <div class="mt-8 text-sm text-white/60">Trusted by trainers from 87 countries</div>
+      <div class="mt-8 text-sm text-white/60">Trusted by trainers from 87 countries • 19.4k placements</div>
     </div>
   </div>
 </header>
@@ -63,14 +107,35 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
 
 <!-- Jobs Section -->
 <section id="jobs" class="max-w-screen-2xl mx-auto px-8 py-16">
-  <div class="flex justify-between items-end mb-8">
+  <div class="flex flex-col lg:flex-row justify-between items-start lg:items-end mb-8 gap-y-4">
     <div>
       <span class="uppercase tracking-[2px] text-xs font-semibold text-[#1e1b4b]">Smart Opportunities</span>
       <h2 class="text-4xl font-semibold tracking-tighter mt-1">Browse &amp; Apply Smarter</h2>
+      <p class="text-slate-600 mt-1">Use filters and Smart Auto-Apply to submit high-quality applications instantly.</p>
     </div>
-    <a href="pricing.html" class="hidden md:block text-sm font-semibold px-5 py-2.5 border border-slate-300 rounded-2xl hover:bg-white">Unlock Unlimited Apply →</a>
+    <a href="pricing.html" class="hidden md:block text-sm font-semibold px-5 py-2.5 border border-slate-300 rounded-2xl hover:bg-white transition-all">Unlock Unlimited Apply →</a>
   </div>
+
+  <!-- Search & Filters -->
+  <div class="mb-8 flex flex-col md:flex-row gap-4">
+    <div class="flex-1">
+      <div class="relative">
+        <i class="fa-solid fa-search absolute left-4 top-3.5 text-slate-400"></i>
+        <input id="job-search" type="text" placeholder="Search by title, platform, or keyword..." 
+               onkeyup="filterJobs()"
+               class="w-full pl-11 pr-4 py-3 border border-slate-200 rounded-2xl text-sm focus:outline-none focus:border-[#1e1b4b]">
+      </div>
+    </div>
+    <div class="flex flex-wrap gap-2" id="filter-chips">
+      <!-- Populated by JS -->
+    </div>
+  </div>
+
   <div id="jobs-grid" class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5"></div>
+  
+  <div class="text-center mt-8">
+    <p class="text-xs text-slate-500">Showing curated high-quality opportunities. Pro unlocks unlimited + priority matching.</p>
+  </div>
 </section>
 
 <!-- How it Works -->
@@ -83,15 +148,15 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
     <div class="grid md:grid-cols-3 gap-8">
       <div class="flex gap-x-5">
         <div class="text-4xl font-bold text-[#1e1b4b] w-9">01</div>
-        <div><div class="font-semibold text-lg mb-2">Browse Opportunities</div><p class="text-slate-600 text-sm">Explore curated AI Trainer roles from top platforms like Outlier, Scale AI, and Surge AI.</p></div>
+        <div><div class="font-semibold text-lg mb-2">Browse &amp; Filter</div><p class="text-slate-600 text-sm">Explore curated AI Trainer roles from top platforms. Use smart filters to find the perfect match.</p></div>
       </div>
       <div class="flex gap-x-5">
         <div class="text-4xl font-bold text-[#1e1b4b] w-9">02</div>
-        <div><div class="font-semibold text-lg mb-2">Smart Auto-Apply</div><p class="text-slate-600 text-sm">Our AI generates personalized applications tailored to each job type in seconds.</p></div>
+        <div><div class="font-semibold text-lg mb-2">Smart Auto-Apply</div><p class="text-slate-600 text-sm">Our AI generates personalized, platform-aware applications tailored to each job type in seconds. Edit and submit.</p></div>
       </div>
       <div class="flex gap-x-5">
         <div class="text-4xl font-bold text-[#1e1b4b] w-9">03</div>
-        <div><div class="font-semibold text-lg mb-2">Get Hired Faster</div><p class="text-slate-600 text-sm">Submit high-quality applications and track everything in one place.</p></div>
+        <div><div class="font-semibold text-lg mb-2">Track &amp; Get Hired</div><p class="text-slate-600 text-sm">Monitor all your applications in one dashboard. See status updates and improve over time.</p></div>
       </div>
     </div>
   </div>
@@ -106,24 +171,24 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
   <div class="grid md:grid-cols-3 gap-6">
     <div class="bg-white border border-slate-200 rounded-3xl p-7">
       <div class="flex items-center gap-x-4 mb-5">
-        <div class="w-11 h-11 bg-slate-200 rounded-2xl"></div>
+        <div class="w-11 h-11 bg-slate-200 rounded-2xl overflow-hidden"><img src="https://i.pravatar.cc/44?img=28" class="w-full h-full object-cover"></div>
         <div><div class="font-semibold">Maria Santos</div><div class="text-xs text-slate-500">Philippines • Outlier Pro</div></div>
       </div>
-      <p class="text-sm text-slate-600">“TAIW’s Smart Auto-Apply helped me land my first project at Outlier within a week. The personalized messages are incredibly effective.”</p>
+      <p class="text-sm text-slate-600">“TAIW’s Smart Auto-Apply helped me land my first project at Outlier within a week. The personalized messages are incredibly effective and sound natural.”</p>
     </div>
     <div class="bg-white border border-slate-200 rounded-3xl p-7">
       <div class="flex items-center gap-x-4 mb-5">
-        <div class="w-11 h-11 bg-slate-200 rounded-2xl"></div>
+        <div class="w-11 h-11 bg-slate-200 rounded-2xl overflow-hidden"><img src="https://i.pravatar.cc/44?img=47" class="w-full h-full object-cover"></div>
         <div><div class="font-semibold">David Kim</div><div class="text-xs text-slate-500">South Korea • Surge AI</div></div>
       </div>
-      <p class="text-sm text-slate-600">“The AI understands the difference between RLHF and reasoning jobs. My application quality improved dramatically.”</p>
+      <p class="text-sm text-slate-600">“The AI understands the difference between RLHF and reasoning jobs. My application quality improved dramatically. I went from 2 applications/week to 8.”</p>
     </div>
     <div class="bg-white border border-slate-200 rounded-3xl p-7">
       <div class="flex items-center gap-x-4 mb-5">
-        <div class="w-11 h-11 bg-slate-200 rounded-2xl"></div>
+        <div class="w-11 h-11 bg-slate-200 rounded-2xl overflow-hidden"><img src="https://i.pravatar.cc/44?img=32" class="w-full h-full object-cover"></div>
         <div><div class="font-semibold">Aisha Rahman</div><div class="text-xs text-slate-500">Indonesia • Scale AI</div></div>
       </div>
-      <p class="text-sm text-slate-600">“I used to spend hours writing applications. Now I apply to 5–6 roles per day with better quality. Game changer.”</p>
+      <p class="text-sm text-slate-600">“I used to spend hours writing applications. Now I apply to 5–6 roles per day with better quality. Game changer for my income.”</p>
     </div>
   </div>
 </section>
@@ -132,55 +197,668 @@ body{font-family:Inter,system-ui,sans-serif}.heading-serif,.display{font-family:
 <section class="bg-[#1e1b4b] text-white py-16">
   <div class="max-w-screen-2xl mx-auto px-8 text-center">
     <h2 class="text-4xl font-semibold tracking-tighter mb-4">Ready to apply smarter?</h2>
-    <p class="text-white/70 mb-8 max-w-md mx-auto">Join thousands of AI Trainers who are getting hired faster with TAIW Smart Auto-Apply.</p>
-    <a href="pricing.html" class="inline-block px-10 py-4 bg-white text-[#1e1b4b] font-semibold rounded-2xl">Start 7-day free trial</a>
+    <p class="text-white/70 mb-8 max-w-md mx-auto">Join thousands of AI Trainers who are getting hired faster with TAIW Smart Auto-Apply. Try the full interactive demo above.</p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center">
+      <a href="#jobs" class="inline-block px-10 py-4 bg-white text-[#1e1b4b] font-semibold rounded-2xl">Start Browsing Jobs</a>
+      <button onclick="showSignupModal()" class="inline-block px-10 py-4 border border-white/40 hover:bg-white/10 font-semibold rounded-2xl transition-all">Create Free Account</button>
+    </div>
   </div>
 </section>
 
 <footer class="bg-slate-900 text-white/50 py-10 text-sm">
   <div class="max-w-screen-2xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center gap-y-4">
-    <div>© 2026 TAIW — TrainAIWorld. All rights reserved.</div>
+    <div>© 2026 TAIW — TrainAIWorld. All rights reserved. <span class="text-white/30">• Fully functional demo</span></div>
     <div class="flex gap-x-6">
-      <a href="pricing.html" class="hover:text-white">Pricing</a>
-      <a href="#" class="hover:text-white">Terms</a>
-      <a href="#" class="hover:text-white">Privacy</a>
+      <a href="pricing.html" class="hover:text-white transition-colors">Pricing</a>
+      <a href="privacy.html" class="hover:text-white transition-colors">Privacy</a>
+      <a href="terms.html" class="hover:text-white transition-colors">Terms</a>
+      <a href="faq.html" class="hover:text-white transition-colors">FAQ</a>
     </div>
   </div>
 </footer>
 
+<!-- Smart Apply Modal -->
+<div id="apply-modal" onclick="if (event.target.id === 'apply-modal') hideApplyModal()" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
+  <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl w-full max-w-2xl max-h-[92vh] overflow-hidden shadow-2xl modal">
+    <div class="px-8 pt-8 pb-6 border-b flex items-center justify-between">
+      <div>
+        <div class="font-semibold text-2xl tracking-tight">Smart Auto-Apply</div>
+        <div class="text-sm text-slate-500" id="modal-job-platform"></div>
+      </div>
+      <button onclick="hideApplyModal()" class="text-3xl leading-none text-slate-400 hover:text-slate-600">&times;</button>
+    </div>
+
+    <div class="p-8 overflow-auto max-h-[calc(92vh-180px)]">
+      <div class="mb-6">
+        <div class="text-xs uppercase tracking-wider text-slate-500 mb-1">POSITION</div>
+        <div class="font-semibold text-xl" id="modal-job-title"></div>
+        <div class="flex items-center gap-x-3 mt-1">
+          <div class="text-emerald-600 font-medium" id="modal-job-pay"></div>
+          <div class="px-3 py-0.5 text-xs rounded-full bg-slate-100 text-slate-600" id="modal-job-category"></div>
+        </div>
+      </div>
+
+      <!-- Profile Form -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-6">
+        <div>
+          <label class="block text-xs font-semibold text-slate-500 tracking-wider mb-1.5">YOUR FULL NAME</label>
+          <input id="applicant-name" type="text" value="Jordan Lee" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:border-[#1e1b4b] outline-none">
+        </div>
+        <div>
+          <label class="block text-xs font-semibold text-slate-500 tracking-wider mb-1.5">YEARS OF EXPERIENCE</label>
+          <input id="applicant-exp" type="number" value="3.5" step="0.5" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:border-[#1e1b4b] outline-none">
+        </div>
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-xs font-semibold text-slate-500 tracking-wider mb-1.5">KEY SKILLS &amp; STRENGTHS (comma separated)</label>
+        <input id="applicant-skills" type="text" value="Chain-of-thought reasoning, Python, careful instruction following, RLHF preference modeling" 
+               class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:border-[#1e1b4b] outline-none">
+      </div>
+
+      <div class="mb-6">
+        <label class="block text-xs font-semibold text-slate-500 tracking-wider mb-1.5">SHORT BIO / WHY YOU'RE A GREAT FIT</label>
+        <textarea id="applicant-bio" rows="3" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm focus:border-[#1e1b4b] outline-none">I have strong analytical skills and 3+ years helping frontier labs improve model reasoning and alignment. I excel at producing clear, structured responses.</textarea>
+      </div>
+
+      <button onclick="generateApplication()" 
+              class="w-full py-3.5 bg-[#1e1b4b] hover:bg-black transition-all text-white font-semibold rounded-2xl flex items-center justify-center gap-x-2 mb-6">
+        <i class="fa-solid fa-magic"></i> <span>Generate Personalized Application</span>
+      </button>
+
+      <!-- Generated Output -->
+      <div id="generated-section" class="hidden">
+        <div class="flex items-center justify-between mb-2">
+          <div class="text-xs uppercase tracking-wider text-slate-500">AI-GENERATED APPLICATION (edit as needed)</div>
+          <button onclick="copyApplication()" class="text-xs flex items-center gap-x-1 text-[#1e1b4b] hover:underline"><i class="fa-solid fa-copy"></i> <span>Copy</span></button>
+        </div>
+        <textarea id="generated-text" rows="9" class="w-full border border-slate-200 rounded-2xl px-4 py-4 text-sm font-mono leading-relaxed focus:border-[#1e1b4b] outline-none"></textarea>
+        
+        <div class="flex gap-3 mt-4">
+          <button onclick="submitApplication()" 
+                  class="flex-1 py-3.5 bg-emerald-600 hover:bg-emerald-700 transition-all text-white font-semibold rounded-2xl flex items-center justify-center gap-x-2">
+            <i class="fa-solid fa-paper-plane"></i> <span>Submit Application (Demo)</span>
+          </button>
+          <button onclick="hideApplyModal()" class="px-6 py-3.5 border border-slate-300 rounded-2xl text-sm font-medium hover:bg-slate-50">Cancel</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- My Applications Modal -->
+<div id="applications-modal" onclick="if (event.target.id === 'applications-modal') hideApplicationsModal()" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
+  <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl w-full max-w-3xl max-h-[90vh] overflow-hidden shadow-2xl modal">
+    <div class="px-8 pt-8 pb-6 border-b flex justify-between items-center">
+      <div>
+        <div class="font-semibold text-2xl tracking-tight">My Applications</div>
+        <div class="text-sm text-slate-500">Demo tracker — data saved in your browser</div>
+      </div>
+      <button onclick="hideApplicationsModal()" class="text-3xl leading-none text-slate-400 hover:text-slate-600">&times;</button>
+    </div>
+    
+    <div class="p-8 overflow-auto max-h-[calc(90vh-140px)]" id="applications-list">
+      <!-- Populated dynamically by JS -->
+    </div>
+    
+    <div class="px-8 py-5 border-t bg-slate-50 text-xs text-slate-500 flex items-center gap-x-2">
+      <i class="fa-solid fa-info-circle"></i> 
+      <span>This is a fully functional demo. In production this would sync with your TAIW account and show real status from platforms.</span>
+    </div>
+  </div>
+</div>
+
+<!-- Signup Modal -->
+<div id="signup-modal" onclick="if (event.target.id === 'signup-modal') hideSignupModal()" class="hidden fixed inset-0 bg-black/60 z-[100] flex items-center justify-center p-4">
+  <div onclick="event.stopImmediatePropagation()" class="bg-white rounded-3xl w-full max-w-md shadow-2xl modal">
+    <div class="px-8 pt-8 pb-6 border-b">
+      <div class="font-semibold text-2xl tracking-tight">Join TAIW as an AI Trainer</div>
+      <div class="text-sm text-slate-500 mt-1">Create your free account and start using Smart Auto-Apply instantly.</div>
+    </div>
+    
+    <div class="p-8">
+      <div class="space-y-5">
+        <div>
+          <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">FULL NAME</label>
+          <input id="signup-name" type="text" value="Jordan Lee" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm">
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">EMAIL ADDRESS</label>
+          <input id="signup-email" type="email" value="jordan.lee.ai@example.com" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm">
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">PRIMARY PLATFORMS YOU WORK ON</label>
+          <div class="flex flex-wrap gap-2">
+            <label class="flex items-center gap-x-2 text-sm border border-slate-200 rounded-2xl px-4 py-2 cursor-pointer has-[:checked]:border-[#1e1b4b]">
+              <input type="checkbox" checked class="accent-[#1e1b4b]"> <span>Outlier</span>
+            </label>
+            <label class="flex items-center gap-x-2 text-sm border border-slate-200 rounded-2xl px-4 py-2 cursor-pointer has-[:checked]:border-[#1e1b4b]">
+              <input type="checkbox" checked class="accent-[#1e1b4b]"> <span>Scale AI</span>
+            </label>
+            <label class="flex items-center gap-x-2 text-sm border border-slate-200 rounded-2xl px-4 py-2 cursor-pointer has-[:checked]:border-[#1e1b4b]">
+              <input type="checkbox" class="accent-[#1e1b4b]"> <span>Surge AI</span>
+            </label>
+          </div>
+        </div>
+        <div>
+          <label class="text-xs font-semibold text-slate-500 tracking-wider block mb-1.5">EXPERIENCE LEVEL</label>
+          <select id="signup-level" class="w-full border border-slate-200 rounded-2xl px-4 py-3 text-sm">
+            <option>Intermediate (1-3 years)</option>
+            <option selected>Advanced (3-5 years)</option>
+            <option>Expert (5+ years)</option>
+          </select>
+        </div>
+      </div>
+      
+      <button onclick="completeSignup()" 
+              class="mt-8 w-full py-4 bg-[#1e1b4b] hover:bg-black text-white font-semibold rounded-2xl transition-all">
+        Create Free Account &amp; Start Applying
+      </button>
+      
+      <p class="text-center text-[10px] text-slate-400 mt-4">By creating an account you agree to our Terms &amp; Privacy Policy. Demo only — no real data stored.</p>
+    </div>
+  </div>
+</div>
+
+<!-- Toast Container -->
+<div id="toast-container" class="fixed bottom-6 right-6 z-[200] flex flex-col gap-3"></div>
+
 <script>
-// Job data
+// Tailwind script
+let currentJob = null;
+let applications = JSON.parse(localStorage.getItem('taiw_applications') || '[]');
+let currentUser = JSON.parse(localStorage.getItem('taiw_user') || 'null');
+
+// Expanded realistic job data
 const jobsData = [
-  {id:1, platform:"Outlier", title:"Advanced AI Trainer – Reasoning & Coding", pay:"$35–$55/hr", category:"reasoning high-pay"},
-  {id:2, platform:"Scale AI", title:"AI Data Quality Trainer", pay:"$28–$42/hr", category:"data-quality"},
-  {id:4, platform:"Surge AI", title:"RLHF & Preference Data Trainer", pay:"$30–$48/hr", category:"rlhf high-pay"},
-  {id:6, platform:"Micro1 Talent", title:"Specialized Domain AI Trainer", pay:"$32–$50/hr", category:"reasoning high-pay"},
-  {id:7, platform:"Outlier", title:"STEM AI Trainer (Physics & Math)", pay:"$40–$60/hr", category:"reasoning high-pay"},
-  {id:8, platform:"Surge AI", title:"Preference Ranking & Alignment Trainer", pay:"$28–$45/hr", category:"rlhf"}
+  {id:1, platform:"Outlier", title:"Advanced AI Trainer – Reasoning & Coding", pay:"$35–$55/hr", category:"reasoning-high-pay", tags:["Reasoning", "Coding"]},
+  {id:2, platform:"Scale AI", title:"AI Data Quality Trainer", pay:"$28–$42/hr", category:"data-quality", tags:["Data Quality", "Evaluation"]},
+  {id:3, platform:"Surge AI", title:"RLHF & Preference Data Trainer", pay:"$30–$48/hr", category:"rlhf", tags:["RLHF", "Alignment"]},
+  {id:4, platform:"Micro1 Talent", title:"Specialized Domain AI Trainer", pay:"$32–$50/hr", category:"reasoning-high-pay", tags:["Domain Expert", "STEM"]},
+  {id:5, platform:"Outlier", title:"STEM AI Trainer (Physics & Math)", pay:"$40–$60/hr", category:"reasoning-high-pay", tags:["STEM", "Reasoning"]},
+  {id:6, platform:"Surge AI", title:"Preference Ranking & Alignment Trainer", pay:"$28–$45/hr", category:"rlhf", tags:["Preference", "Safety"]},
+  {id:7, platform:"Scale AI", title:"Multimodal & Vision Data Trainer", pay:"$26–$38/hr", category:"data-quality", tags:["Vision", "Multimodal"]},
+  {id:8, platform:"Outlier", title:"Complex Instruction Following Trainer", pay:"$33–$52/hr", category:"reasoning-high-pay", tags:["Instruction", "Reasoning"]}
 ];
 
-function renderJobs() {
-  const grid = document.getElementById('jobs-grid');
-  grid.innerHTML = '';
-  jobsData.forEach(job => {
-    grid.innerHTML += `
-      <div class="job-card bg-white border border-slate-200 rounded-3xl p-6 flex flex-col">
-        <div class="flex justify-between">
-          <div><div class="font-semibold">${job.platform}</div><div class="text-emerald-600 text-xs">${job.pay}</div></div>
-        </div>
-        <h3 class="font-semibold mt-4 mb-6 leading-tight">${job.title}</h3>
-        <a href="pricing.html" class="mt-auto block text-center py-3 text-sm font-semibold bg-[#1e1b4b] text-white rounded-2xl">Unlock Smart Apply →</a>
-      </div>`;
+let activeFilter = 'all';
+
+function updateUserUI() {
+  const userState = document.getElementById('user-state');
+  const joinBtn = document.getElementById('join-btn');
+  const navMyApps = document.getElementById('nav-my-apps');
+  
+  if (currentUser) {
+    userState.classList.remove('hidden');
+    userState.classList.add('flex');
+    joinBtn.classList.add('hidden');
+    document.getElementById('user-name').textContent = currentUser.name.split(' ')[0];
+    document.getElementById('user-avatar').textContent = currentUser.name.split(' ').map(n => n[0]).join('').toUpperCase().slice(0,2);
+    if (navMyApps) navMyApps.style.display = 'flex';
+  } else {
+    userState.classList.remove('flex');
+    userState.classList.add('hidden');
+    joinBtn.classList.remove('hidden');
+    if (navMyApps) navMyApps.style.display = 'none';
+  }
+}
+
+function toggleMobileMenu() {
+  const menu = document.getElementById('mobile-menu');
+  menu.classList.toggle('hidden');
+}
+
+// Filter chips
+function initFilters() {
+  const container = document.getElementById('filter-chips');
+  container.innerHTML = '';
+  
+  const filters = [
+    {label: 'All', value: 'all'},
+    {label: 'High-Pay Reasoning', value: 'reasoning-high-pay'},
+    {label: 'RLHF & Alignment', value: 'rlhf'},
+    {label: 'Data Quality', value: 'data-quality'}
+  ];
+  
+  filters.forEach(f => {
+    const btn = document.createElement('button');
+    btn.className = `filter-btn px-4 py-1.5 text-sm border border-slate-200 rounded-2xl hover:border-slate-300 ${f.value === activeFilter ? 'active' : ''}`;
+    btn.textContent = f.label;
+    btn.onclick = () => {
+      activeFilter = f.value;
+      document.querySelectorAll('#filter-chips button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      filterJobs();
+    };
+    container.appendChild(btn);
   });
 }
 
-function showSignupModal() {
-  alert('Thank you! In the full version, this would open a signup form.');
+function filterJobs() {
+  const searchTerm = document.getElementById('job-search').value.toLowerCase().trim();
+  
+  let filtered = jobsData;
+  
+  if (activeFilter !== 'all') {
+    filtered = filtered.filter(j => j.category === activeFilter);
+  }
+  
+  if (searchTerm) {
+    filtered = filtered.filter(j => 
+      j.title.toLowerCase().includes(searchTerm) || 
+      j.platform.toLowerCase().includes(searchTerm) ||
+      (j.tags && j.tags.join(' ').toLowerCase().includes(searchTerm))
+    );
+  }
+  
+  renderJobs(filtered);
 }
 
-window.onload = function() {
+function renderJobs(filteredJobs = jobsData) {
+  const grid = document.getElementById('jobs-grid');
+  grid.innerHTML = '';
+  
+  if (filteredJobs.length === 0) {
+    grid.innerHTML = `<div class="col-span-full text-center py-12 text-slate-500">No jobs match your filters. Try broadening your search.</div>`;
+    return;
+  }
+  
+  filteredJobs.forEach(job => {
+    const card = document.createElement('div');
+    card.className = `job-card bg-white border border-slate-200 rounded-3xl p-6 flex flex-col`;
+    card.innerHTML = `
+      <div class="flex justify-between items-start">
+        <div>
+          <div class="font-semibold text-lg">${job.platform}</div>
+          <div class="text-emerald-600 text-sm font-medium mt-0.5">${job.pay}</div>
+        </div>
+        <div class="flex flex-wrap gap-1 justify-end">
+          ${job.tags.map(tag => `<span class="text-[10px] px-2.5 py-0.5 bg-slate-100 text-slate-600 rounded-full">${tag}</span>`).join('')}
+        </div>
+      </div>
+      
+      <h3 class="font-semibold mt-4 mb-6 leading-tight text-[15px]">${job.title}</h3>
+      
+      <div class="mt-auto flex gap-2">
+        <button onclick='showApplyModal(${JSON.stringify(job)})' 
+                class="flex-1 py-3 text-sm font-semibold bg-[#1e1b4b] text-white rounded-2xl hover:bg-black transition-all flex items-center justify-center gap-x-2">
+          <i class="fa-solid fa-magic text-xs"></i> <span>Smart Apply</span>
+        </button>
+        <button onclick='quickViewJob(${JSON.stringify(job)})' 
+                class="px-4 py-3 text-sm font-medium border border-slate-200 rounded-2xl hover:bg-slate-50 transition-all">
+          <i class="fa-solid fa-eye"></i>
+        </button>
+      </div>
+    `;
+    grid.appendChild(card);
+  });
+}
+
+function quickViewJob(job) {
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black/60 z-[110] flex items-center justify-center p-4';
+  modal.innerHTML = `
+    <div class="bg-white rounded-3xl max-w-md w-full p-8 modal">
+      <div class="flex justify-between mb-6">
+        <div>
+          <div class="font-bold text-2xl">${job.platform}</div>
+          <div class="text-emerald-600 font-medium">${job.pay}</div>
+        </div>
+        <button onclick="this.closest('.fixed').remove()" class="text-3xl text-slate-400">&times;</button>
+      </div>
+      <h3 class="text-xl font-semibold mb-4">${job.title}</h3>
+      <div class="text-sm text-slate-600 mb-6">This is a high-quality curated opportunity. Use Smart Auto-Apply to submit a tailored application in seconds.</div>
+      
+      <div class="flex gap-3">
+        <button onclick="this.closest('.fixed').remove(); showApplyModal(${JSON.stringify(job)})" class="flex-1 py-3 bg-[#1e1b4b] text-white font-semibold rounded-2xl">Smart Apply Now</button>
+        <button onclick="this.closest('.fixed').remove()" class="px-6 py-3 border rounded-2xl">Close</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+// === SMART APPLY LOGIC (Expert level generation) ===
+function showApplyModal(job) {
+  currentJob = job;
+  const modal = document.getElementById('apply-modal');
+  
+  document.getElementById('modal-job-platform').textContent = job.platform;
+  document.getElementById('modal-job-title').textContent = job.title;
+  document.getElementById('modal-job-pay').textContent = job.pay;
+  document.getElementById('modal-job-category').textContent = job.category.replace(/-/g, ' ').toUpperCase();
+  
+  // Pre-fill from currentUser if exists
+  if (currentUser) {
+    document.getElementById('applicant-name').value = currentUser.name || 'Jordan Lee';
+  }
+  
+  document.getElementById('generated-section').classList.add('hidden');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function hideApplyModal() {
+  const modal = document.getElementById('apply-modal');
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+  document.getElementById('generated-section').classList.add('hidden');
+}
+
+function generateApplication() {
+  if (!currentJob) return;
+  
+  const name = document.getElementById('applicant-name').value.trim() || 'Alex Rivera';
+  const exp = document.getElementById('applicant-exp').value || '3';
+  const skills = document.getElementById('applicant-skills').value.trim();
+  const bio = document.getElementById('applicant-bio').value.trim();
+  
+  let generated = '';
+  const platform = currentJob.platform;
+  const category = currentJob.category;
+  const title = currentJob.title;
+  
+  // Expert-level contextual generation
+  if (category.includes('reasoning')) {
+    generated = `Dear ${platform} Hiring Team,
+
+I am writing to express my strong interest in the ${title} position. With ${exp} years of experience in AI training and a proven track record in complex reasoning tasks, I am confident I can deliver high-quality annotations that advance model capabilities.
+
+My expertise includes ${skills}. ${bio}
+
+In previous projects I have consistently produced clear chain-of-thought explanations and identified subtle logical gaps. I am excited to contribute to ${platform}'s mission of building more capable and reliable AI systems.
+
+Thank you for considering my application. I look forward to the opportunity to discuss how I can support your team.
+
+Best regards,
+${name}`;
+  } else if (category.includes('rlhf')) {
+    generated = `Dear ${platform} Team,
+
+I am excited to apply for the ${title} role. My background in preference modeling and human feedback interpretation (${exp} years) makes me an excellent fit for this position.
+
+Key strengths: ${skills}. ${bio}
+
+I have extensive experience ranking responses for safety, helpfulness, and alignment. I understand the nuances of preference data and how it shapes model behavior. I am particularly drawn to ${platform}'s work in responsible AI development.
+
+I would welcome the chance to bring my skills to your RLHF initiatives.
+
+Sincerely,
+${name}`;
+  } else {
+    generated = `Dear Hiring Manager at ${platform},
+
+I am applying for the ${title} position. With ${exp} years of hands-on experience in AI data quality and evaluation, I am well-positioned to contribute immediately.
+
+My core competencies include ${skills}. ${bio}
+
+I take pride in producing accurate, consistent, and well-documented work. I am eager to support ${platform}'s efforts in building high-quality training datasets that power the next generation of AI models.
+
+Thank you for your time and consideration.
+
+Best regards,
+${name}`;
+  }
+  
+  const output = document.getElementById('generated-text');
+  output.value = generated;
+  document.getElementById('generated-section').classList.remove('hidden');
+  output.focus();
+  output.select();
+}
+
+function copyApplication() {
+  const textarea = document.getElementById('generated-text');
+  textarea.select();
+  document.execCommand('copy');
+  showToast('Application copied to clipboard!', 'success');
+}
+
+function submitApplication() {
+  if (!currentJob || !currentUser) {
+    // Auto-create demo user if none
+    if (!currentUser) {
+      currentUser = { name: document.getElementById('applicant-name').value || 'Demo Trainer', email: 'demo@taiw.demo' };
+      localStorage.setItem('taiw_user', JSON.stringify(currentUser));
+      updateUserUI();
+    }
+  }
+  
+  const generatedText = document.getElementById('generated-text').value;
+  
+  const newApp = {
+    id: Date.now(),
+    jobId: currentJob.id,
+    platform: currentJob.platform,
+    title: currentJob.title,
+    pay: currentJob.pay,
+    submittedAt: new Date().toISOString(),
+    status: 'Pending Review',
+    generatedText: generatedText,
+    applicantName: document.getElementById('applicant-name').value
+  };
+  
+  applications.unshift(newApp);
+  localStorage.setItem('taiw_applications', JSON.stringify(applications));
+  
+  hideApplyModal();
+  showToast(`Application submitted successfully to ${currentJob.platform}!`, 'success');
+  
+  // Show applications modal after short delay
+  setTimeout(() => {
+    showMyApplications();
+  }, 1200);
+}
+
+// === My Applications ===
+function showMyApplications() {
+  const modal = document.getElementById('applications-modal');
+  const listContainer = document.getElementById('applications-list');
+  listContainer.innerHTML = '';
+  
+  if (applications.length === 0) {
+    listContainer.innerHTML = `
+      <div class="text-center py-12">
+        <i class="fa-solid fa-inbox text-5xl text-slate-300 mb-4"></i>
+        <div class="font-medium text-lg">No applications yet</div>
+        <p class="text-sm text-slate-500 mt-1">Use Smart Apply on any job to get started. Your submissions will appear here.</p>
+        <button onclick="hideApplicationsModal(); document.getElementById('jobs').scrollIntoView({behavior:'smooth'})" 
+                class="mt-6 px-6 py-2.5 bg-[#1e1b4b] text-white text-sm font-semibold rounded-2xl">Browse Opportunities</button>
+      </div>`;
+    modal.classList.remove('hidden');
+    modal.classList.add('flex');
+    return;
+  }
+  
+  applications.forEach((app, index) => {
+    const div = document.createElement('div');
+    div.className = 'application-item border border-slate-200 rounded-2xl p-5 mb-4';
+    const date = new Date(app.submittedAt).toLocaleDateString('en-US', {month:'short', day:'numeric', year:'numeric'});
+    
+    let statusColor = 'bg-amber-100 text-amber-700';
+    if (app.status.includes('Reviewed')) statusColor = 'bg-blue-100 text-blue-700';
+    if (app.status.includes('Hired') || app.status.includes('Accepted')) statusColor = 'bg-emerald-100 text-emerald-700';
+    
+    div.innerHTML = `
+      <div class="flex justify-between items-start">
+        <div>
+          <div class="font-semibold">${app.platform} — ${app.title}</div>
+          <div class="text-xs text-slate-500">${date} • ${app.pay}</div>
+        </div>
+        <span class="px-3 py-1 text-xs font-medium rounded-full ${statusColor}">${app.status}</span>
+      </div>
+      
+      <div class="mt-4 flex gap-2">
+        <button onclick="viewApplicationDetails(${index})" class="text-xs px-4 py-1.5 border border-slate-300 rounded-xl hover:bg-slate-50">View Application</button>
+        <button onclick="updateApplicationStatus(${index}, this)" class="text-xs px-4 py-1.5 border border-slate-300 rounded-xl hover:bg-slate-50">Update Status</button>
+        <button onclick="withdrawApplication(${index}, this)" class="text-xs px-4 py-1.5 text-red-600 hover:bg-red-50 border border-red-200 rounded-xl">Withdraw</button>
+      </div>
+    `;
+    listContainer.appendChild(div);
+  });
+  
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function hideApplicationsModal() {
+  document.getElementById('applications-modal').classList.remove('flex');
+  document.getElementById('applications-modal').classList.add('hidden');
+}
+
+function viewApplicationDetails(index) {
+  const app = applications[index];
+  const modal = document.createElement('div');
+  modal.className = 'fixed inset-0 bg-black/70 z-[120] flex items-center justify-center p-4';
+  modal.innerHTML = `
+    <div class="bg-white rounded-3xl max-w-2xl w-full p-8 modal">
+      <div class="flex justify-between mb-6">
+        <div class="font-semibold text-xl">Application to ${app.platform}</div>
+        <button onclick="this.closest('.fixed').remove()" class="text-2xl">&times;</button>
+      </div>
+      <div class="text-sm mb-4"><strong>Position:</strong> ${app.title} (${app.pay})</div>
+      <div class="text-sm mb-6"><strong>Submitted:</strong> ${new Date(app.submittedAt).toLocaleString()}</div>
+      
+      <div class="text-xs uppercase tracking-wider text-slate-500 mb-2">GENERATED APPLICATION TEXT</div>
+      <textarea readonly class="w-full h-64 border border-slate-200 rounded-2xl p-4 text-sm font-mono">${app.generatedText}</textarea>
+      
+      <div class="mt-6 flex justify-end gap-3">
+        <button onclick="copyToClipboard('${app.generatedText.replace(/'/g, "\\'")}', this);" class="px-5 py-2 border rounded-2xl text-sm">Copy Text</button>
+        <button onclick="this.closest('.fixed').remove()" class="px-6 py-2 bg-[#1e1b4b] text-white rounded-2xl text-sm">Close</button>
+      </div>
+    </div>
+  `;
+  document.body.appendChild(modal);
+}
+
+function updateApplicationStatus(index, btnElement) {
+  const statuses = ['Pending Review', 'Under Review', 'Interview Stage', 'Accepted / Hired'];
+  const current = applications[index].status;
+  let nextIndex = statuses.indexOf(current) + 1;
+  if (nextIndex >= statuses.length) nextIndex = 0;
+  
+  applications[index].status = statuses[nextIndex];
+  localStorage.setItem('taiw_applications', JSON.stringify(applications));
+  
+  // Refresh list
+  showMyApplications();
+  showToast(`Status updated to: ${applications[index].status}`, 'success');
+}
+
+function withdrawApplication(index, btnElement) {
+  if (!confirm('Withdraw this application?')) return;
+  applications.splice(index, 1);
+  localStorage.setItem('taiw_applications', JSON.stringify(applications));
+  showMyApplications();
+  showToast('Application withdrawn.', 'info');
+}
+
+function copyToClipboard(text, element) {
+  navigator.clipboard.writeText(text).then(() => {
+    const originalText = element.textContent;
+    element.textContent = 'Copied!';
+    setTimeout(() => { element.textContent = originalText; }, 1800);
+  });
+}
+
+// === Signup ===
+function showSignupModal() {
+  const modal = document.getElementById('signup-modal');
+  modal.classList.remove('hidden');
+  modal.classList.add('flex');
+}
+
+function hideSignupModal() {
+  const modal = document.getElementById('signup-modal');
+  modal.classList.remove('flex');
+  modal.classList.add('hidden');
+}
+
+function completeSignup() {
+  const name = document.getElementById('signup-name').value.trim() || 'New Trainer';
+  const email = document.getElementById('signup-email').value.trim() || 'trainer@demo.com';
+  
+  currentUser = { name, email, joined: new Date().toISOString() };
+  localStorage.setItem('taiw_user', JSON.stringify(currentUser));
+  
+  hideSignupModal();
+  updateUserUI();
+  
+  showToast(`Welcome to TAIW, ${name.split(' ')[0]}! Your account is ready.`, 'success');
+  
+  // Optional: show applications or jobs
+  setTimeout(() => {
+    document.getElementById('jobs').scrollIntoView({ behavior: 'smooth' });
+  }, 900);
+}
+
+// Toast
+function showToast(message, type = 'success') {
+  const container = document.getElementById('toast-container');
+  const toast = document.createElement('div');
+  
+  let bg = 'bg-emerald-600';
+  if (type === 'info') bg = 'bg-slate-700';
+  if (type === 'error') bg = 'bg-red-600';
+  
+  toast.className = `toast ${bg} text-white px-6 py-3.5 rounded-2xl shadow-xl flex items-center gap-x-3 max-w-sm`;
+  toast.innerHTML = `
+    <div class="flex-1 text-sm">${message}</div>
+    <button onclick="this.parentElement.remove()" class="text-white/70 hover:text-white ml-2">&times;</button>
+  `;
+  container.appendChild(toast);
+  
+  setTimeout(() => {
+    if (toast.parentElement) toast.parentElement.removeChild(toast);
+  }, 4200);
+}
+
+// Initialize everything
+function initializeWebsite() {
+  // Render initial jobs
   renderJobs();
-};
+  initFilters();
+  
+  // User state
+  updateUserUI();
+  
+  // Seed one demo application if none exist (for impressive first visit)
+  if (applications.length === 0 && currentUser) {
+    // optional seeding removed for clean start
+  }
+  
+  // Keyboard support for modals
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+      const modals = document.querySelectorAll('.fixed.inset-0');
+      if (modals.length > 0) {
+        modals[modals.length-1].remove();
+      } else {
+        const openModals = document.querySelectorAll('.flex[onclick*="hide"]');
+        if (openModals.length) openModals[openModals.length-1].click();
+      }
+    }
+    if (e.key === '/' && document.activeElement.tagName === 'BODY') {
+      e.preventDefault();
+      const search = document.getElementById('job-search');
+      if (search) search.focus();
+    }
+  });
+  
+  // Demo tip toast on first load (only once)
+  if (!localStorage.getItem('taiw_demo_shown')) {
+    setTimeout(() => {
+      showToast('Tip: Click "Smart Apply" on any job to try the AI generator!', 'info');
+      localStorage.setItem('taiw_demo_shown', 'true');
+    }, 6500);
+  }
+  
+  // Make sure filters work with initial render
+  console.log('%c[TAIW] Expert demo website initialized successfully.', 'color:#64748b');
+}
+
+// Boot
+window.onload = initializeWebsite;
 </script>
 </body>
 </html>
