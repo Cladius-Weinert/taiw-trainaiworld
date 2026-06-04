@@ -2,16 +2,79 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>About • TAIW</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About • TAIW — TrainAIWorld</title>
 <script src="https://cdn.tailwindcss.com"></script>
-<style>body{font-family:Inter,system-ui,sans-serif}</style>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap');
+body { font-family: 'Inter', system-ui, sans-serif; }
+.heading { font-family: 'Space Grotesk', Inter, sans-serif; }
+</style>
 </head>
-<body class="bg-slate-50">
-<nav class="bg-white border-b px-8 py-5"><div class="max-w-screen-2xl mx-auto flex justify-between"><a href="index.html" class="font-semibold text-xl">TAIW</a><a href="index.html" class="text-sm">Back to Home</a></div></nav>
-<div class="max-w-screen-md mx-auto px-6 py-16">
-<h1 class="text-4xl font-semibold tracking-tighter mb-6">About TAIW</h1>
-<p class="text-lg text-slate-600 mb-8">TAIW (TrainAIWorld) is a global platform that connects skilled AI Trainers with the world’s leading AI companies through intelligent tools and verified opportunities.</p>
-<p class="text-slate-600">Our mission is to make high-quality AI training work accessible, efficient, and rewarding for talented individuals worldwide — especially in emerging markets.</p>
+<body class="bg-slate-50 text-slate-800">
+<!-- Navbar -->
+<nav class="bg-white border-b border-slate-200">
+  <div class="max-w-screen-2xl mx-auto px-8 flex items-center justify-between h-20">
+    <div class="flex items-center gap-x-3">
+      <a href="index.html" class="flex items-center gap-x-3">
+        <div class="w-10 h-10 bg-[#1e1b4b] rounded-2xl flex items-center justify-center"><span class="text-white font-bold text-xl">TAIW</span></div>
+        <div><span class="font-semibold text-2xl tracking-tighter">TAIW</span><span class="text-[10px] text-slate-500 block -mt-1">TRAINAIWORLD</span></div>
+      </a>
+    </div>
+    <div class="flex items-center gap-x-6 text-sm font-medium">
+      <a href="index.html#jobs" class="hover:text-[#1e1b4b]">Opportunities</a>
+      <a href="pricing.html" class="hover:text-[#1e1b4b]">Pricing</a>
+      <a href="index.html" class="px-5 py-2 bg-[#1e1b4b] text-white rounded-2xl text-sm font-semibold">Back to Home</a>
+    </div>
+  </div>
+</nav>
+
+<div class="max-w-screen-2xl mx-auto px-8 py-16">
+  <div class="max-w-3xl">
+    <div class="inline-flex items-center gap-x-2 bg-white border border-slate-200 px-4 py-1.5 rounded-2xl mb-6 text-sm">
+      <i class="fa-solid fa-globe text-[#1e1b4b]"></i>
+      <span class="font-medium">Global AI Trainer Platform</span>
+    </div>
+    
+    <h1 class="text-6xl font-semibold tracking-tighter heading mb-6">We empower AI Trainers<br>around the world.</h1>
+    <p class="text-2xl text-slate-600 max-w-2xl">TAIW (TrainAIWorld) is building the infrastructure that connects talented individuals with frontier AI labs through intelligent matching and Smart Auto-Apply technology.</p>
+  </div>
+
+  <div class="grid md:grid-cols-3 gap-8 mt-16">
+    <div class="bg-white border border-slate-200 rounded-3xl p-8">
+      <div class="w-12 h-12 bg-[#1e1b4b] rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-users text-white text-2xl"></i></div>
+      <h3 class="font-semibold text-xl mb-3">Our Mission</h3>
+      <p class="text-slate-600">Make high-quality AI training work accessible, efficient, and rewarding — especially for trainers in emerging markets across Southeast Asia, Latin America, and Africa.</p>
+    </div>
+    
+    <div class="bg-white border border-slate-200 rounded-3xl p-8">
+      <div class="w-12 h-12 bg-[#1e1b4b] rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-robot text-white text-2xl"></i></div>
+      <h3 class="font-semibold text-xl mb-3">The Problem We Solve</h3>
+      <p class="text-slate-600">AI trainers spend hours writing repetitive applications. Quality varies. Many talented people are overlooked. TAIW fixes this with intelligent tools that level the playing field.</p>
+    </div>
+    
+    <div class="bg-white border border-slate-200 rounded-3xl p-8">
+      <div class="w-12 h-12 bg-[#1e1b4b] rounded-2xl flex items-center justify-center mb-6"><i class="fa-solid fa-chart-line text-white text-2xl"></i></div>
+      <h3 class="font-semibold text-xl mb-3">Our Impact</h3>
+      <p class="text-slate-600">Over 19,400 trainers placed. Average hourly rate of $38. Trainers in 87 countries are now earning sustainably through better access to opportunities.</p>
+    </div>
+  </div>
+
+  <div class="mt-16 max-w-2xl">
+    <h2 class="text-3xl font-semibold tracking-tighter mb-6">How We Think About AI Training</h2>
+    <div class="prose prose-slate max-w-none text-slate-600">
+      <p>We believe that the people who help train frontier models deserve the best tools, fair compensation, and transparent processes. TAIW is not just a job board — it is infrastructure for the human side of AI development.</p>
+      <p class="mt-4">Our Smart Auto-Apply technology understands the nuances of different task types (reasoning, RLHF, data quality, multimodal) and helps trainers present their strengths effectively.</p>
+    </div>
+  </div>
 </div>
+
+<footer class="border-t py-8 text-sm text-slate-500">
+  <div class="max-w-screen-2xl mx-auto px-8 flex justify-between">
+    <div>© 2026 TAIW. All rights reserved.</div>
+    <div class="flex gap-x-6"><a href="privacy.html">Privacy</a><a href="terms.html">Terms</a></div>
+  </div>
+</footer>
 </body>
 </html>
