@@ -2,6 +2,8 @@
 
 **Smart Auto-Apply Platform for AI Trainers**
 
+> ⚡ **Live Demo**: Deployed on Vercel
+
 A modern, fully interactive demo website for TAIW (TrainAIWorld) — a platform that helps AI Trainers discover opportunities on top platforms (Outlier, Scale AI, Surge AI, Micro1, etc.) and submit high-quality, personalized applications in seconds using intelligent auto-generation.
 
 ## ✨ Key Features (Fully Functional Demo)
@@ -18,6 +20,12 @@ A modern, fully interactive demo website for TAIW (TrainAIWorld) — a platform 
 - Vanilla JavaScript (no build step required)
 - localStorage for demo persistence
 
+## Live Deployment
+
+This project is automatically deployed on **Vercel**.
+
+**Production URL**: Check your Vercel Dashboard for the latest deployment URL.
+
 ## One-Click Deployment to Vercel (Recommended)
 
 This project is optimized for instant deployment on Vercel:
@@ -27,7 +35,7 @@ This project is optimized for instant deployment on Vercel:
 3. Select the repository `Cladius-Weinert/taiw-trainaiworld`
 4. Click **Deploy**
 
-Vercel will automatically detect it as a static site and give you a live URL in under 2 minutes (e.g. `https://taiw-trainaiworld.vercel.app`).
+Vercel will automatically detect it as a static site and give you a live URL in under 2 minutes.
 
 Every future push to `main` will trigger automatic redeployment.
 
@@ -52,18 +60,7 @@ Every future push to `main` will trigger automatic redeployment.
 This is a **fully functional, production-quality demo** ready for:
 - Client presentations
 - Portfolio / case study
-- Further development into a real SaaS (add backend, auth, real AI generation via API, payments, etc.)
-
-The pricing page (`pricing.html`) includes a complete Stripe-style checkout simulation.
-
-## Future Enhancements (Recommended)
-- Migrate to Next.js / React + shadcn/ui (see companion repo `connect-my-code`)
-- Integrate real LLM for application generation
-- Add user authentication + backend (Supabase / Firebase)
-- Connect to real job APIs or webhooks
-
-## License
-Demo project for portfolio and educational purposes.
+- Further development into a real SaaS
 
 ---
 
