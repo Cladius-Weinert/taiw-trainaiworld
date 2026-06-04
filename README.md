@@ -18,6 +18,19 @@ A modern, fully interactive demo website for TAIW (TrainAIWorld) — a platform 
 - Vanilla JavaScript (no build step required)
 - localStorage for demo persistence
 
+## One-Click Deployment to Vercel (Recommended)
+
+This project is optimized for instant deployment on Vercel:
+
+1. Go to [https://vercel.com/new](https://vercel.com/new)
+2. Click **"Import GitHub Repository"**
+3. Select the repository `Cladius-Weinert/taiw-trainaiworld`
+4. Click **Deploy**
+
+Vercel will automatically detect it as a static site and give you a live URL in under 2 minutes (e.g. `https://taiw-trainaiworld.vercel.app`).
+
+Every future push to `main` will trigger automatic redeployment.
+
 ## Getting Started (Local)
 
 1. Clone or download the repository
@@ -48,7 +61,6 @@ The pricing page (`pricing.html`) includes a complete Stripe-style checkout simu
 - Integrate real LLM for application generation
 - Add user authentication + backend (Supabase / Firebase)
 - Connect to real job APIs or webhooks
-- Deploy to Vercel with one click
 
 ## License
 Demo project for portfolio and educational purposes.
