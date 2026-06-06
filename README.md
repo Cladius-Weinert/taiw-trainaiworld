@@ -15,6 +15,32 @@ A modern, fully interactive demo website for TAIW (TrainAIWorld) — a platform 
 - **Responsive & Polished UX**: Mobile-first navigation, beautiful modals, toast notifications, keyboard shortcuts (`/` to focus search, `ESC` to close modals).
 - **Production-Ready Structure**: Clean Tailwind + vanilla JS. Easy to host on Vercel, Netlify, or GitHub Pages.
 
+## 🔬 Research & Project Notes
+
+### 1. Project Purpose
+TAIW serves as a smart orchestration layer for AI Trainers. The platform bridges the gap between high-quality AI data annotation opportunities and skilled human raters by using AI to adapt applications to specific technical requirements (RLHF, Chain-of-Thought, Multimodal).
+
+### 2. Research Direction
+Current research focuses on **Contextual Adaptation Logic**:
+- **Domain Specialization**: Tailoring applications for STEM vs. Creative Writing roles.
+- **Instruction Following**: Analyzing JD patterns to generate compliant "proof-of-work" snippets within cover letters.
+- **Platform Mapping**: Researching underlying ATS patterns (e.g., Workday) to optimize resume readability.
+
+### 3. Dataset & Source Notes
+Opportunities are curated from a multi-tier cascade including:
+- Major job boards and 48+ identified Workday employer portals specific to AI training.
+- 30+ direct career sites for frontier labs.
+*Note: All opportunities are verified for "Remote-First" status before curation.*
+
+### 4. Deployment & SEO
+- **Deployment**: Hosted on **Vercel** for global low-latency access.
+- **Verification**: Ahrefs site ownership verified for continuous technical health monitoring.
+- **Keyword Strategy**: Targeted focus on high-intent search terms like "Smart Auto-Apply" and "RLHF Training Jobs."
+
+### 5. Future Improvements
+- **Live Status Sync**: Transitioning from localStorage to a persistent **Supabase** backend for real-time tracking.
+- **Automated Verification**: Integrating Google Search Console to complement Ahrefs data.
+
 ## Tech Stack
 - Pure HTML + Tailwind CSS (CDN) + Font Awesome
 - Vanilla JavaScript (no build step required)
